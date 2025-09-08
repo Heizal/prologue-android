@@ -1,9 +1,17 @@
-name: CI
+name: Android CI
 on: [push, pull_request]
 
 jobs:
-  hello:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hello CI"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Run Lint & Build
+        run: ./gradlew ktlintCheck detekt build
+

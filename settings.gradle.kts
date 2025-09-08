@@ -20,4 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "prologue-android"
-include(":app")
+include(":app",
+        ":core-ui")
